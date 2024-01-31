@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace YouTubeViewers.WPF.ViewModels
 {
-    class EditYouTubeViewerViewModel
+    class EditYouTubeViewerViewModel:ViewModelBase
     {
         public YouTubeViewerDetailsFormViewModel YouTubeViewerDetailsFormViewModel { get; }
         public EditYouTubeViewerViewModel()

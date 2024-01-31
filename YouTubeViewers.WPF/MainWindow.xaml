@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
+        xmlns:custom="clr-namespace:ModalControl;assembly=ModalControl"
         xmlns:vms="clr-namespace:YouTubeViewers.WPF.ViewModels"
         Title="YouTube Viewers"
         Height="450" 
@@ -22,10 +22,10 @@
         </DataTemplate>
     </Window.Resources>
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid >
-            <modalcontrol:Modal IsOpen="{Binding IsModalOpen}">
-                <ContentControl Content="{Binding CurrentModelViewModel}"/>
-            </modalcontrol:Modal>
+        <Grid>
+            <custom:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+                <ContentControl Margin="20 10" Content="{Binding CurrentModalViewModel}"/>
+            </custom:Modal>
             <views:YouTubeViewersView Margin="25" DataContext="{Binding YouTubeViewersViewModel}"/>
         </Grid>
     </ScrollViewer>
