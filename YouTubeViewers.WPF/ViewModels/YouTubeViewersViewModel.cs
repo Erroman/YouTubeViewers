@@ -4,19 +4,28 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using YouTubeViewers.WPF.Commands;
 using YouTubeViewers.WPF.Stores;
 
 namespace YouTubeViewers.WPF.ViewModels
 {
     public class YouTubeViewersViewModel: ViewModelBase
     {
+
         public YouTubeViewersListingViewModel YouTubeViewersListingViewModel { get;}
+
         public YouTubeViewersDetailsViewModel YouTubeViewersDetailsViewModel { get;}
+
+
         public ICommand AddYouTubeViewersCommand { get;}
-        public YouTubeViewersViewModel(SelectedYouTubeViewerStore _selectedYouTubeViewerStore)
+
+
+        public YouTubeViewersViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore,ModalNavigationStore modalNavigationStore)
         {
-            YouTubeViewersListingViewModel = new YouTubeViewersListingViewModel(_selectedYouTubeViewerStore);
-            YouTubeViewersDetailsViewModel = new YouTubeViewersDetailsViewModel(_selectedYouTubeViewerStore);
+            YouTubeViewersListingViewModel = new YouTubeViewersListingViewModel(selectedYouTubeViewerStore);
+            YouTubeViewersDetailsViewModel = new YouTubeViewersDetailsViewModel(selectedYouTubeViewerStore);
+
+            AddYouTubeViewersCommand = new OpenAddYouTubeViewerCommand(modalNavigationStore);
         }
     }
 }

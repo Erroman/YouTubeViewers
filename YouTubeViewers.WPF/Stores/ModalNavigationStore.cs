@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YouTubeViewers.WPF.Commands;
 using YouTubeViewers.WPF.ViewModels;
 
 namespace YouTubeViewers.WPF.Stores
@@ -22,8 +23,12 @@ namespace YouTubeViewers.WPF.Stores
                 CurrentViewModelChanged?.Invoke();
 			}
 		}
+		internal void Close()
+        {
+            CurrentViewModel = null;
+        }
 
-		public bool IsOpen => CurrentViewModel != null;
+        public bool IsOpen => CurrentViewModel != null;
 
         public event Action? CurrentViewModelChanged;
     }

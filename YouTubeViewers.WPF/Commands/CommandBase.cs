@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace YouTubeViewers.WPF.Commands
 {
-    abstract class CommandBase : ICommand
+    public abstract class CommandBase : ICommand
     {
         public event EventHandler? CanExecuteChanged;
 
