@@ -14,16 +14,17 @@ namespace YouTubeViewers.WPF.ViewModels
 
         public string Username => YouTubeViewer.Username;
         public string IsSubscribedDisplay => YouTubeViewer.IsSubscribed ? "Yes" : "No";
-        public string IsMemberDisplay => YouTubeViewer.IsMemeber ? "Yes" : "No";
+        public string IsMemberDisplay => YouTubeViewer.IsMember ? "Yes" : "No";
 
         public ICommand EditCommand { get; }
 
         public ICommand DeleteCommand { get; }
         
 
-        public YouTubeViewersListingItemViewModel(YouTubeViewer youTubeViewer)
+        public YouTubeViewersListingItemViewModel(YouTubeViewer youTubeViewer,ICommand editCommand)
         {
             YouTubeViewer = youTubeViewer;
+            EditCommand = editCommand;
         }
     }
 }

@@ -10,12 +10,12 @@ namespace YouTubeViewers.WPF.Models
     {
         public string Username  { get; }
         public bool IsSubscribed { get;}
-        public bool IsMemeber { get; }
-        public YouTubeViewer(string username, bool isSubscribed, bool isMemeber)
+        public bool IsMember { get; }
+        public YouTubeViewer(string username, bool isSubscribed, bool isMember)
         {
             Username = username;
             IsSubscribed = isSubscribed;
-            IsMemeber = isMemeber;
+            IsMember = isMember;
         }
 
       

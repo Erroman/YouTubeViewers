@@ -20,7 +20,7 @@ namespace YouTubeViewers.WPF.ViewModels
 
         public string IsSubscribedDisplay => (SelectedYouTubeViewer?.IsSubscribed ?? false) ? "Yes" : "No";
 
-        public string IsMemberDisplay => (SelectedYouTubeViewer?.IsMemeber ?? false) ? "Yes" : "No";
+        public string IsMemberDisplay => (SelectedYouTubeViewer?.IsMember ?? false) ? "Yes" : "No";
 
         public YouTubeViewersDetailsViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
         {
