@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.SymbolStore;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,8 +16,9 @@ namespace YouTubeViewers.WPF.ViewModels
 
         public AddYouTubeViewerViewModel(ModalNavigationStore modalNavigationStore)
         {
+            ICommand submitCommand = null;
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel(null,cancelCommand);
+            YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel(submitCommand,cancelCommand);
         }
     }
 }
