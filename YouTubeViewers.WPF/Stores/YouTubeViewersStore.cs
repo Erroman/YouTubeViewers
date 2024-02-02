@@ -10,5 +10,10 @@ namespace YouTubeViewers.WPF.Stores
     public class YouTubeViewersStore
     {
         public event Action<YouTubeViewer>? YouTubeViewerAdded;
+
+        public async Task Add(YouTubeViewer youTubeViewer) 
+        {
+            YouTubeViewerAdded?.Invoke(youTubeViewer);
+        }
     }
 }
