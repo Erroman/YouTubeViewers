@@ -29,10 +29,21 @@ namespace YouTubeViewers.WPF.Commands
                 formViewModel.Username,
                 formViewModel.IsSubscribed,
                 formViewModel.IsMember);
-            
-            await _youTubeViewersStore.Add(youTubeViewer);
+            try
+            {   
+                await _youTubeViewersStore.Add(youTubeViewer);
 
-            _modalNavigationStore.Close();
+                _modalNavigationStore.Close();
+
+                //_addYouTubeViewerViewModel.ErrorMessage = "";
+            }
+            catch (ArgumentException e)
+            {
+                //_addYouTubeViewerViewModel.ErrorMessage = e.Message;
+                return;
+            }
+
+         
 
         }
     }

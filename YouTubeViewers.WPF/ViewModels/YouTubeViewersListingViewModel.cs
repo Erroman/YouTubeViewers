@@ -28,10 +28,12 @@ namespace YouTubeViewers.WPF.ViewModels
             set 
             { 
                 _selectedYouTubeViewerListingItemViewModel = value;
-                OnPropertyChanged(nameof(SelectedYouTubeViewerListingItemViewModel));
+
                 _selectedYouTubeViewerStore.SelectedYouTubeViewer = _selectedYouTubeViewerListingItemViewModel?.YouTubeViewer;
 
-                _youTubeViewersStore.YouTubeViewerAdded += _youTubeViewersStore_YouTubeViewerAdded;
+                _youTubeViewersStore.YouTubeViewerAdded += YouTubeViewersStore_YouTubeViewerAdded;
+
+                OnPropertyChanged(nameof(SelectedYouTubeViewerListingItemViewModel));
             }
         }
 
@@ -43,17 +45,20 @@ namespace YouTubeViewers.WPF.ViewModels
             _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
             _modalNavigationStore = modalNavigationStore;
             _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
+
+            _youTubeViewersStore.YouTubeViewerAdded += YouTubeViewersStore_YouTubeViewerAdded;
         }
         protected override void Dispose()
         {
-            _youTubeViewersStore.YouTubeViewerAdded -= _youTubeViewersStore_YouTubeViewerAdded;
+            _youTubeViewersStore.YouTubeViewerAdded -= YouTubeViewersStore_YouTubeViewerAdded;
             base.Dispose();
         }
 
-        private void _youTubeViewersStore_YouTubeViewerAdded(YouTubeViewer youTubeViewer)
+        private void YouTubeViewersStore_YouTubeViewerAdded(YouTubeViewer youTubeViewer)
         {
             AddYouTubeViewer(youTubeViewer);
         }
+
         private void AddYouTubeViewer(YouTubeViewer youTubeViewer) 
         {
             ICommand editCommand = new OpenEditYouTubeViewerCommand(youTubeViewer,_modalNavigationStore);
