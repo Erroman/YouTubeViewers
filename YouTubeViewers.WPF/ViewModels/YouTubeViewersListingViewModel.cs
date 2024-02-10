@@ -48,9 +48,11 @@ namespace YouTubeViewers.WPF.ViewModels
 
             _youTubeViewersStore.YouTubeViewerAdded += YouTubeViewersStore_YouTubeViewerAdded;
         }
+
         protected override void Dispose()
         {
             _youTubeViewersStore.YouTubeViewerAdded -= YouTubeViewersStore_YouTubeViewerAdded;
+
             base.Dispose();
         }
 
