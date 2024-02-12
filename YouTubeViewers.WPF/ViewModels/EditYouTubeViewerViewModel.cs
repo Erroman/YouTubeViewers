@@ -10,13 +10,13 @@ using YouTubeViewers.WPF.Stores;
 
 namespace YouTubeViewers.WPF.ViewModels
 {
-    class EditYouTubeViewerViewModel:ViewModelBase
+    public class EditYouTubeViewerViewModel:ViewModelBase
     {
         public YouTubeViewerDetailsFormViewModel YouTubeViewerDetailsFormViewModel { get; }
 
-        public EditYouTubeViewerViewModel(YouTubeViewer youTubeViewer,ModalNavigationStore modalNavigationStore)
+        public EditYouTubeViewerViewModel(YouTubeViewer youTubeViewer, YouTubeViewersStore youTubeViewersStore, ModalNavigationStore modalNavigationStore)
         {
-            ICommand submitCommand = new EditYouTubeViewerCommand(modalNavigationStore);
+            ICommand submitCommand = new EditYouTubeViewerCommand(this,youTubeViewersStore,modalNavigationStore);
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
             YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel(submitCommand, cancelCommand) 
             { 

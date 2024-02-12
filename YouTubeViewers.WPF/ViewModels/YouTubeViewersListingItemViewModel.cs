@@ -4,13 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using YouTubeViewers.WPF.Commands;
 using YouTubeViewers.WPF.Models;
+using YouTubeViewers.WPF.Stores;
 
 namespace YouTubeViewers.WPF.ViewModels
 {
     public class YouTubeViewersListingItemViewModel:ViewModelBase
     {
-        public YouTubeViewer YouTubeViewer { get; }
+        private YouTubeViewersStore youTubeViewersStore;
+        private ModalNavigationStore modalNavigationStore;
+
+        public YouTubeViewer YouTubeViewer { get; private set; }
 
         public string Username => YouTubeViewer.Username;
         //public string IsSubscribedDisplay => YouTubeViewer.IsSubscribed ? "Yes" : "No";
@@ -20,10 +25,17 @@ namespace YouTubeViewers.WPF.ViewModels
         public ICommand DeleteCommand { get; }
         
 
-        public YouTubeViewersListingItemViewModel(YouTubeViewer youTubeViewer,ICommand editCommand)
+        public YouTubeViewersListingItemViewModel(YouTubeViewer youTubeViewer, YouTubeViewersStore youTubeViewersStore, ModalNavigationStore modalNavigationStore)
         {
             YouTubeViewer = youTubeViewer;
-            EditCommand = editCommand;
+
+            EditCommand = new OpenEditYouTubeViewerCommand(this, youTubeViewersStore, modalNavigationStore);
+        }
+
+        public void Update(YouTubeViewer youTubeViewer)
+        {
+            YouTubeViewer = youTubeViewer;
+            OnPropertyChanged(nameof(Username));
         }
     }
 }

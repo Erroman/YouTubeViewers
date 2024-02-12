@@ -11,20 +11,26 @@ namespace YouTubeViewers.WPF.Commands
 {
     public class OpenEditYouTubeViewerCommand:CommandBase   
     {
-        private readonly YouTubeViewer _youTubeViewer;
+        private YouTubeViewersListingItemViewModel _youTubeViewersListingItemViewModel;
+        private readonly YouTubeViewersStore _youTubeViewersStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
-        public OpenEditYouTubeViewerCommand(
-            YouTubeViewer youTubeViewer,
+        public OpenEditYouTubeViewerCommand(YouTubeViewersListingItemViewModel youTubeViewersListingItemViewModel, 
+            YouTubeViewersStore youTubeViewersStore, 
             ModalNavigationStore modalNavigationStore)
         {
-            _youTubeViewer = youTubeViewer;
-            _modalNavigationStore = modalNavigationStore;
+           _youTubeViewersListingItemViewModel = youTubeViewersListingItemViewModel;
+           _youTubeViewersStore = youTubeViewersStore;
+           _modalNavigationStore = modalNavigationStore;
+
         }
 
         public override void Execute(object? parameter)
         {
-            EditYouTubeViewerViewModel editYouTubeViewerViewModel = new EditYouTubeViewerViewModel(_youTubeViewer,_modalNavigationStore);
+            YouTubeViewer youTubeViewer = _youTubeViewersListingItemViewModel.YouTubeViewer;
+
+            EditYouTubeViewerViewModel editYouTubeViewerViewModel = 
+                new EditYouTubeViewerViewModel(youTubeViewer,_youTubeViewersStore,_modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = editYouTubeViewerViewModel;
         }
     }
