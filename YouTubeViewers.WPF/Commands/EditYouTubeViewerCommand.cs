@@ -26,7 +26,7 @@ namespace YouTubeViewers.WPF.Commands
             YouTubeViewerDetailsFormViewModel formViewModel = _editYouTubeViewerViewModel.YouTubeViewerDetailsFormViewModel;
 
             YouTubeViewer youTubeViewer = new YouTubeViewer(
-                Guid.NewGuid(),
+                _editYouTubeViewerViewModel.YouTubeViewerId,
                 formViewModel.Username,
                 formViewModel.IsSubscribed,
                 formViewModel.IsMember);
