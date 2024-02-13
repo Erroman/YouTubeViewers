@@ -20,10 +20,9 @@ namespace YouTubeViewers.WPF
         private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
         public App() 
         { 
-            _youTubeViewersStore = new YouTubeViewersStore();
             _modalNavigationStore = new ModalNavigationStore();
-           
-            _selectedYouTubeViewerStore = new SelectedYouTubeViewerStore();
+            _youTubeViewersStore = new YouTubeViewersStore();
+            _selectedYouTubeViewerStore = new SelectedYouTubeViewerStore(_youTubeViewersStore);
 
         }
 
