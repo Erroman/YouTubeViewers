@@ -11,6 +11,11 @@ namespace YouTubeViewers.EntityFramework
 {
     public class YouTubeViewersDBContext : DbContext
     {
-        public DbSet<YouTubeViewerDto> YouTubeViewers { get; set; }
+
+        public YouTubeViewersDBContext(DbContextOptions options) : base(options)
+        {
+        }
+
+        public DbSet<YouTubeViewerDto> YouTubeViewers  { get; set; }
     }
 }
