@@ -50,6 +50,10 @@ namespace YouTubeViewers.WPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            using (YouTubeViewersDbContext context = _youTubeViewersDBContextFactory.Create()) 
+            { 
+                context.Database.Migrate(); 
+            }
             YouTubeViewersViewModel youTubeViewersViewModel = new YouTubeViewersViewModel(
                 _youTubeViewersStore,
                 _selectedYouTubeViewerStore, 
