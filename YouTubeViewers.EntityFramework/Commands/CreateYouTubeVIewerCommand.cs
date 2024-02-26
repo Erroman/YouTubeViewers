@@ -12,16 +12,16 @@ namespace YouTubeViewers.EntityFramework.Commands
 {
     public class CreateYouTubeViewerCommand : ICreateYouTubeViewerCommand    
     {
-        private readonly YouTubeViewersDBContextFactory _contextFactory;
+        private readonly YouTubeViewersDbContextFactory _contextFactory;
 
-        public CreateYouTubeViewerCommand(YouTubeViewersDBContextFactory contextFactory)
+        public CreateYouTubeViewerCommand(YouTubeViewersDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
 
         public async Task Execute(YouTubeViewer youTubeViewer)
         {
-            using (YouTubeViewersDBContext context = _contextFactory.Create()) 
+            using (YouTubeViewersDbContext context = _contextFactory.Create()) 
             { 
                 YouTubeViewerDto youTubeViewersDtos = new YouTubeViewerDto() 
                 {

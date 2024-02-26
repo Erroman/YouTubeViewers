@@ -22,7 +22,7 @@ namespace YouTubeViewers.WPF
     public partial class App : Application
     {
         private readonly ModalNavigationStore _modalNavigationStore;
-        YouTubeViewersDBContextFactory _youTubeViewersDBContextFactory;
+        YouTubeViewersDbContextFactory _youTubeViewersDBContextFactory;
         private readonly IGetAllYouTubeVIewersQuery _getAllYouTubeVIewersQuery;
         private readonly ICreateYouTubeViewerCommand _createYouTubeViewerCommand;
         private readonly IUpdateYouTubeViewerCommand _updateYouTubeViewerCommand;
@@ -32,8 +32,9 @@ namespace YouTubeViewers.WPF
         public App() 
         { 
             String connectionString = "Data Source=YouTubeViewers.db";
+
             _modalNavigationStore = new ModalNavigationStore();
-            _youTubeViewersDBContextFactory = new YouTubeViewersDBContextFactory(
+            _youTubeViewersDBContextFactory = new YouTubeViewersDbContextFactory(
                 new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
             _getAllYouTubeVIewersQuery = new GetAllYouTubeViewersQuery(_youTubeViewersDBContextFactory);
             _createYouTubeViewerCommand = new CreateYouTubeViewerCommand(_youTubeViewersDBContextFactory);

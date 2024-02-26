@@ -13,16 +13,16 @@ namespace YouTubeViewers.EntityFramework.Queries
 {
     public class GetAllYouTubeViewersQuery : IGetAllYouTubeVIewersQuery
     {
-        private readonly YouTubeViewersDBContextFactory _contextFactory;
+        private readonly YouTubeViewersDbContextFactory _contextFactory;
         
-        public GetAllYouTubeViewersQuery(YouTubeViewersDBContextFactory contextFactory)
+        public GetAllYouTubeViewersQuery(YouTubeViewersDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
 
         public async Task<IEnumerable<YouTubeViewer>> Execute()
         {
-            using (YouTubeViewersDBContext context = _contextFactory.Create()) 
+            using (YouTubeViewersDbContext context = _contextFactory.Create()) 
             {
                 IEnumerable<YouTubeViewerDto> youTubeViewerDtos = await context.YouTubeViewers.ToListAsync();
 

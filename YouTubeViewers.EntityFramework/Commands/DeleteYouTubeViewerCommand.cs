@@ -11,16 +11,16 @@ namespace YouTubeViewers.EntityFramework.Commands
 {
     public  class DeleteYouTubeViewerCommand : IDeleteYouTubeViewerCommand
     {
-        private readonly YouTubeViewersDBContextFactory _contextFactory;
+        private readonly YouTubeViewersDbContextFactory _contextFactory;
 
-        public DeleteYouTubeViewerCommand(YouTubeViewersDBContextFactory contextFactory)
+        public DeleteYouTubeViewerCommand(YouTubeViewersDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
 
         public async Task Execute(Guid id)
         {
-                using (YouTubeViewersDBContext context = _contextFactory.Create())
+                using (YouTubeViewersDbContext context = _contextFactory.Create())
                 {
                     YouTubeViewerDto youTubeViewersDtos = new YouTubeViewerDto()
                     {

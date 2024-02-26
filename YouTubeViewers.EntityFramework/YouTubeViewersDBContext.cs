@@ -9,10 +9,10 @@ using YouTubeViewers.EntityFramework.DTOs;
 
 namespace YouTubeViewers.EntityFramework
 {
-    public class YouTubeViewersDBContext : DbContext
+    public class YouTubeViewersDbContext : DbContext
     {
 
-        public YouTubeViewersDBContext(DbContextOptions options) : base(options)
+        public YouTubeViewersDbContext(DbContextOptions options) : base(options)
         {
         }
 

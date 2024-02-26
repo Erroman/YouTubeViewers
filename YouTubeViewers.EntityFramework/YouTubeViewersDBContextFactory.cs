@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace YouTubeViewers.EntityFramework
 {
-    public class YouTubeViewersDBContextFactory
+    public class YouTubeViewersDbContextFactory
     {
         private readonly DbContextOptions _options;
 
-        public YouTubeViewersDBContextFactory(DbContextOptions options)
+        public YouTubeViewersDbContextFactory(DbContextOptions options)
         {
             _options = options;
         }
 
 
-        public YouTubeViewersDBContext Create()
+        public YouTubeViewersDbContext Create()
         {
    
-            return new YouTubeViewersDBContext(_options);
+            return new YouTubeViewersDbContext(_options);
         }
     }
 }
