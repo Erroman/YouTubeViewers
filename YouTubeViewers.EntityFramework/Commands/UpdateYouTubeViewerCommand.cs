@@ -36,7 +36,6 @@ namespace YouTubeViewers.EntityFramework.Commands
 
 
         }
-    }
-}
+
     }
 }

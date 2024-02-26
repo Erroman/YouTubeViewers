@@ -23,7 +23,7 @@ namespace YouTubeViewers.WPF.Commands
         }
         public override async Task ExecuteAsync(object? parameter)
         {
-            var formViewModel = _addYouTubeViewerViewModel.YouTubeViewerDetailsFormViewModel;
+            YouTubeViewerDetailsFormViewModel formViewModel = _addYouTubeViewerViewModel.YouTubeViewerDetailsFormViewModel;
 
             YouTubeViewer youTubeViewer = new YouTubeViewer(
                 Guid.NewGuid(),
@@ -35,17 +35,11 @@ namespace YouTubeViewers.WPF.Commands
                 await _youTubeViewersStore.Add(youTubeViewer);
 
                 _modalNavigationStore.Close();
-
-                //_addYouTubeViewerViewModel.ErrorMessage = "";
             }
-            catch (ArgumentException e)
+            catch (Exception)
             {
-                //_addYouTubeViewerViewModel.ErrorMessage = e.Message;
-                return;
+                throw;
             }
-
-         
-
         }
     }
 }

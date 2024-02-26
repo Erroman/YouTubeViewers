@@ -20,7 +20,7 @@ namespace YouTubeViewers.EntityFramework
         public YouTubeViewersDBContext Create()
         {
    
-            return new YouTubeViewersDBContext(options);
+            return new YouTubeViewersDBContext(_options);
         }
     }
 }

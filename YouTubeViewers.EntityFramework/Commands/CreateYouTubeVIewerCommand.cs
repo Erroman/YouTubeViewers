@@ -5,15 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using YouTubeViewers.Domain.Commands;
 using YouTubeViewers.Domain.Models;
+using YouTubeViewers.EntityFramework;
 using YouTubeViewers.EntityFramework.DTOs;
 
 namespace YouTubeViewers.EntityFramework.Commands
 {
-    public class CreateYouTubeVIewerCommand :ICreateYouTubeViewerCommand    
+    public class CreateYouTubeViewerCommand : ICreateYouTubeViewerCommand    
     {
         private readonly YouTubeViewersDBContextFactory _contextFactory;
 
-        public CreateYouTubeVIewerCommand(YouTubeViewersDBContextFactory contextFactory)
+        public CreateYouTubeViewerCommand(YouTubeViewersDBContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
         }
@@ -36,6 +37,5 @@ namespace YouTubeViewers.EntityFramework.Commands
 
                 
             }
-        }
     }
 }
