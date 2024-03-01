@@ -22,12 +22,14 @@ namespace YouTubeViewers.EntityFramework.Commands
         {
                 using (YouTubeViewersDbContext context = _contextFactory.Create())
                 {
+                    await Task.Delay(5000);
+
                     YouTubeViewerDto youTubeViewersDtos = new YouTubeViewerDto()
-                    {
-                        Id = id,
-                    };
-                    context.YouTubeViewers.Remove(youTubeViewersDtos);
-                    await context.SaveChangesAsync();
+                        {
+                            Id = id,
+                        };
+                        context.YouTubeViewers.Remove(youTubeViewersDtos);
+                        await context.SaveChangesAsync();
 
                 }
         }
