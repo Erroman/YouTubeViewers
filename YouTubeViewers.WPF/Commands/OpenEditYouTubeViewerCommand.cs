@@ -9,7 +9,7 @@ using YouTubeViewers.WPF.ViewModels;
 
 namespace YouTubeViewers.WPF.Commands
 {
-    public class OpenEditYouTubeViewerCommand:CommandBase   
+    public class OpenEditYouTubeViewerCommand : CommandBase   
     {
         private YouTubeViewersListingItemViewModel _youTubeViewersListingItemViewModel;
         private readonly YouTubeViewersStore _youTubeViewersStore;

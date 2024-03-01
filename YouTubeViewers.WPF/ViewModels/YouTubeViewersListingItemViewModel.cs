@@ -17,9 +17,9 @@ namespace YouTubeViewers.WPF.ViewModels
 
         public YouTubeViewer YouTubeViewer { get; private set; }
 
+
         public string Username => YouTubeViewer.Username;
-        //public string IsSubscribedDisplay => YouTubeViewer.IsSubscribed ? "Yes" : "No";
-        //public string IsMemberDisplay => YouTubeViewer.IsMember ? "Yes" : "No";
+   
         public ICommand EditCommand { get; }
 
         public ICommand DeleteCommand { get; }
@@ -30,11 +30,13 @@ namespace YouTubeViewers.WPF.ViewModels
             YouTubeViewer = youTubeViewer;
 
             EditCommand = new OpenEditYouTubeViewerCommand(this, youTubeViewersStore, modalNavigationStore);
+            DeleteCommand = new DeleteYouTubeViewerCommand(this, youTubeViewersStore);
         }
 
         public void Update(YouTubeViewer youTubeViewer)
         {
             YouTubeViewer = youTubeViewer;
+
             OnPropertyChanged(nameof(Username));
         }
     }

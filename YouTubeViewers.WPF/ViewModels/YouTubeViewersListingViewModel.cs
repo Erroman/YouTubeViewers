@@ -52,10 +52,18 @@ namespace YouTubeViewers.WPF.ViewModels
 
             _youTubeViewersStore.YouTubeViewersLoaded += YouTubeViewersStore_YouTubeViewersLoaded;
             _youTubeViewersStore.YouTubeViewerAdded += YouTubeViewersStore_YouTubeViewerAdded;
-            _youTubeViewersStore.YouTubeViewerUpdated += _youTubeViewersStore_YouTubeViewerUpdated;
+            _youTubeViewersStore.YouTubeViewerUpdated += YouTubeViewersStore_YouTubeViewerUpdated;
+            _youTubeViewersStore.YouTubeViewerDeleted += YouTubeViewersStore_YouTubeViewerDeleted;
         }
 
-        
+        private void YouTubeViewersStore_YouTubeViewerDeleted(Guid guid)
+        {
+            YouTubeViewersListingItemViewModel itemViewModel = _youTubeViewersListingItemViewModels.FirstOrDefault(y => y.YouTubeViewer.Id == guid);
+            if (itemViewModel != null) 
+            { 
+                _youTubeViewersListingItemViewModels.Remove(itemViewModel); 
+            }
+        }
 
         public static YouTubeViewersListingViewModel LoadViewModel(YouTubeViewersStore youTubeViewersStore,SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
         { 
@@ -66,7 +74,7 @@ namespace YouTubeViewers.WPF.ViewModels
             return viewModel;
         }
 
-        private void _youTubeViewersStore_YouTubeViewerUpdated(YouTubeViewer youTubeViewer)
+        private void YouTubeViewersStore_YouTubeViewerUpdated(YouTubeViewer youTubeViewer)
         {
             var youTubeViewerViewModel = 
                 _youTubeViewersListingItemViewModels.FirstOrDefault(y => y.YouTubeViewer.Id == youTubeViewer.Id);
@@ -80,7 +88,8 @@ namespace YouTubeViewers.WPF.ViewModels
         {            
             _youTubeViewersStore.YouTubeViewersLoaded -= YouTubeViewersStore_YouTubeViewersLoaded;
             _youTubeViewersStore.YouTubeViewerAdded -= YouTubeViewersStore_YouTubeViewerAdded;
-            _youTubeViewersStore.YouTubeViewerUpdated -= _youTubeViewersStore_YouTubeViewerUpdated;
+            _youTubeViewersStore.YouTubeViewerUpdated -= YouTubeViewersStore_YouTubeViewerUpdated;
+            _youTubeViewersStore.YouTubeViewerDeleted -= YouTubeViewersStore_YouTubeViewerDeleted;
 
             base.Dispose();
         }
