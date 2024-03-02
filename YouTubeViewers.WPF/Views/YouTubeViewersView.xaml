@@ -19,7 +19,10 @@
                         </Style.Triggers>
                     </Style>
                     </Grid.Style>
-                    <TextBlock Text="Loading YouTUbe Viewers ..." TextAlignment="Center"/>
+                    <TextBlock 
+                        VerticalAlignment="Center"
+                        Text="Loading YouTUbe Viewers ..." 
+                        TextAlignment="Center" />
                 </Grid>
                 
                 <Grid>
