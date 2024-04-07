@@ -38,7 +38,19 @@ namespace YouTubeViewers.WPF.ViewModels
         }
         private bool _isMember;
 
-        
+        private int _isSubmitting;
+        public int IsSubmitting
+        {
+            get
+            {
+                return _isSubmitting;;
+            }
+            set
+            {
+                _isSubmitting = value;
+                OnPropertyChanged(nameof(IsSubmitting));
+            }
+        }
 
         public bool IsMember
         {
