@@ -24,5 +24,6 @@ namespace YouTubeViewers.WPF.Views
         {
             InitializeComponent();
         }
+
     }
 }
