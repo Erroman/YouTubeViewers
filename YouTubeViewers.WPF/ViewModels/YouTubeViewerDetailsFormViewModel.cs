@@ -38,8 +38,8 @@ namespace YouTubeViewers.WPF.ViewModels
         }
         private bool _isMember;
 
-        private int _isSubmitting;
-        public int IsSubmitting
+        private bool _isSubmitting;
+        public bool IsSubmitting
         {
             get
             {

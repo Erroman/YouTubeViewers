@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:YouTubeViewers.WPF.Components"
+             xmlns:custom="clr-namespace:LoadingSpinnerControl;assembly=LoadingSpinnerControl"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -67,14 +68,14 @@
                 Margin="0 0 5 0"
                 Command="{Binding SubmitCommand}" 
                 Content="Submit"
-                IsEnabled="{Binding CanSubmit}"
-                />
+                IsEnabled="{Binding CanSubmit}" />
             <Button 
+                Margin="0 5 0 0"
                 Command="{Binding CancelCommand}" 
                 Content="Cancel"
-                Style="{StaticResource ButtonSecondary}"
-                />
-           
+                Style="{StaticResource ButtonSecondary}" />
+            <custom:LoadingSpinner Diameter="25" IsLoading="{Binding IsSubmitting}"/>
+
         </WrapPanel>
     </Grid>
 </UserControl>
