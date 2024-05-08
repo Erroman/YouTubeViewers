@@ -74,8 +74,11 @@
                 Command="{Binding CancelCommand}" 
                 Content="Cancel"
                 Style="{StaticResource ButtonSecondary}" />
-            <custom:LoadingSpinner Diameter="25" IsLoading="{Binding IsSubmitting}"/>
-
+            <custom:LoadingSpinner 
+                Diameter="25" 
+                IsLoading="{Binding IsSubmitting}"
+                Thickness="2"
+                />
         </WrapPanel>
     </Grid>
 </UserControl>
