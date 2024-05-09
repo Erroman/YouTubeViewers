@@ -7,6 +7,7 @@ using System.Windows.Input;
 using YouTubeViewers.WPF.Commands;
 using YouTubeViewers.Domain.Models;
 using YouTubeViewers.WPF.Stores;
+using System.Runtime.CompilerServices;
 
 namespace YouTubeViewers.WPF.ViewModels
 {
@@ -19,7 +20,22 @@ namespace YouTubeViewers.WPF.ViewModels
 
 
         public string Username => YouTubeViewer.Username;
-   
+
+        private bool _isDeleting;
+
+        public bool IsDeleting
+        {
+            get
+            {
+                return _isDeleting;
+            }
+            set
+            {
+                _isDeleting = value;
+                OnPropertyChanged(nameof(IsDeleting));
+            }
+        }
+
         public ICommand EditCommand { get; }
 
         public ICommand DeleteCommand { get; }

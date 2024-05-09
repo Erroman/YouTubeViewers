@@ -22,8 +22,6 @@ namespace YouTubeViewers.EntityFramework.Commands
         {
             using (YouTubeViewersDbContext context = _contextFactory.Create())
             {
-                await Task.Delay(5000);
-
                 YouTubeViewerDto youTubeViewersDtos = new YouTubeViewerDto()
                 {
                     Id = youTubeViewer.Id,
