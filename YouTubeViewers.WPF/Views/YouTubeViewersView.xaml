@@ -55,7 +55,11 @@
                             </Style>
                         </Grid.Style>
                         
-                        <TextBlock Style="{StaticResource ErrorMessage}" Text="{Binding ErrorMessage}" />
+                        <TextBlock
+                            VerticalAlignment="Center"
+                            Style="{StaticResource ErrorMessage}" 
+                            Text="{Binding ErrorMessage}" 
+                            TextAlignment="Center" />
                     </Grid>
 
 
