@@ -25,6 +25,7 @@ namespace YouTubeViewers.WPF.Commands
         {
             YouTubeViewerDetailsFormViewModel formViewModel = _addYouTubeViewerViewModel.YouTubeViewerDetailsFormViewModel;
 
+            formViewModel.ErrorMessage = null;
             formViewModel.IsSubmitting = true;
 
             YouTubeViewer youTubeViewer = new YouTubeViewer(
@@ -40,7 +41,7 @@ namespace YouTubeViewers.WPF.Commands
             }
             catch (Exception)
             {
-                throw;
+                formViewModel.ErrorMessage = "Failed to add YouTubeViewer. Please try again later.";
             }
             finally 
             { 
