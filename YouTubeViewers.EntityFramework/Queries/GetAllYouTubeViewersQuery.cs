@@ -22,6 +22,7 @@ namespace YouTubeViewers.EntityFramework.Queries
 
         public async Task<IEnumerable<YouTubeViewer>> Execute()
         {
+            throw new Exception();
             using (YouTubeViewersDbContext context = _contextFactory.Create()) 
             {
                 await Task.Delay(5000);
