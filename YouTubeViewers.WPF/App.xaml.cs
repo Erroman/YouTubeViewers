@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,6 +15,7 @@ using YouTubeViewers.EntityFramework.Commands;
 using YouTubeViewers.EntityFramework.Queries;
 using YouTubeViewers.WPF.Stores;
 using YouTubeViewers.WPF.ViewModels;
+
 
 namespace YouTubeViewers.WPF
 {
@@ -29,8 +32,31 @@ namespace YouTubeViewers.WPF
         private readonly IDeleteYouTubeViewerCommand _deleteYouTubeViewerCommand;
         private readonly YouTubeViewersStore _youTubeViewersStore;
         private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
+
+        private readonly IHost _host;
+
         public App() 
         { 
+            _host = Host.CreateDefaultBuilder()
+                       .ConfigureServices((context, services) =>
+                       {
+                           string connectionString = "Data Source=YouTubeViewers.db";
+
+                           services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
+                           services.AddSingleton<YouTubeViewersDbContextFactory>();
+
+                           services.AddSingleton<GetAllYouTubeViewersQuery>();
+                           services.AddSingleton<CreateYouTubeViewerCommand>();
+                           services.AddSingleton<UpdateYouTubeViewerCommand>();
+                           services.AddSingleton<DeleteYouTubeViewerCommand>();
+
+                           services.AddSingleton<ModalNavigationStore>();
+                           services.AddSingleton<YouTubeViewersStore>();
+                           services.AddSingleton<SelectedYouTubeViewerStore>();
+
+                           services.AddSingleton<MainWindow>();
+                       })
+                       .Build();    
             String connectionString = "Data Source=YouTubeViewers.db";
 
             _modalNavigationStore = new ModalNavigationStore();
@@ -50,7 +76,9 @@ namespace YouTubeViewers.WPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            using (YouTubeViewersDbContext context = _youTubeViewersDBContextFactory.Create()) 
+            _host.Start();
+            YouTubeViewersDbContextFactory youTubeViewersDbContextFactory = _host.Services.GetRequiredService<YouTubeViewersDbContextFactory>();
+            using (YouTubeViewersDbContext context = youTubeViewersDbContextFactory.Create()) 
             { 
                 context.Database.Migrate(); 
             }
@@ -67,6 +95,14 @@ namespace YouTubeViewers.WPF
             MainWindow.Show();
 
             base.OnStartup(e);
+        }
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            _host.StopAsync();
+            _host.Dispose();
+
+            base.OnExit(e);
         }
     }
 }
