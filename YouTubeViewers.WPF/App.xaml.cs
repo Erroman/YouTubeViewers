@@ -54,7 +54,13 @@ namespace YouTubeViewers.WPF
                            services.AddSingleton<YouTubeViewersStore>();
                            services.AddSingleton<SelectedYouTubeViewerStore>();
 
-                           services.AddSingleton<MainWindow>();
+                           services.AddTransient<YouTubeViewersViewModel>(CreateYouTubeViewersViewModel);
+                           services.AddSingleton<MainViewModel>();
+
+                           services.AddSingleton<MainWindow>((services) => new MainWindow() 
+                           { 
+                               DataContext = services.GetRequiredService<MainViewModel>() 
+                           });
                        })
                        .Build();    
             String connectionString = "Data Source=YouTubeViewers.db";
@@ -77,7 +83,8 @@ namespace YouTubeViewers.WPF
         protected override void OnStartup(StartupEventArgs e)
         {
             _host.Start();
-            YouTubeViewersDbContextFactory youTubeViewersDbContextFactory = _host.Services.GetRequiredService<YouTubeViewersDbContextFactory>();
+            YouTubeViewersDbContextFactory youTubeViewersDbContextFactory = 
+                _host.Services.GetRequiredService<YouTubeViewersDbContextFactory>();
             using (YouTubeViewersDbContext context = youTubeViewersDbContextFactory.Create()) 
             { 
                 context.Database.Migrate(); 
@@ -92,6 +99,7 @@ namespace YouTubeViewers.WPF
             {
                 DataContext = new MainViewModel(_modalNavigationStore, youTubeViewersViewModel)
             };
+            MainWindow = _host.Services.GetRequiredService<MainWindow>();
             MainWindow.Show();
 
             base.OnStartup(e);
@@ -104,5 +112,13 @@ namespace YouTubeViewers.WPF
 
             base.OnExit(e);
         }
+        private YouTubeViewersViewModel CreateYouTubeViewersViewModel(IServiceProvider services)
+        {
+            return YouTubeViewersViewModel.LoadViewModel(
+                services.GetRequiredService<YouTubeViewersStore>(), 
+                services.GetRequiredService<SelectedYouTubeViewerStore>(), 
+                services.GetRequiredService<ModalNavigationStore>());
+        }
+
     }
 }
