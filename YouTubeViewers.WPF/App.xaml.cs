@@ -45,10 +45,10 @@ namespace YouTubeViewers.WPF
                            services.AddSingleton<DbContextOptions>(new DbContextOptionsBuilder().UseSqlite(connectionString).Options);
                            services.AddSingleton<YouTubeViewersDbContextFactory>();
 
-                           services.AddSingleton<GetAllYouTubeViewersQuery>();
-                           services.AddSingleton<CreateYouTubeViewerCommand>();
-                           services.AddSingleton<UpdateYouTubeViewerCommand>();
-                           services.AddSingleton<DeleteYouTubeViewerCommand>();
+                           services.AddSingleton<IGetAllYouTubeVIewersQuery,GetAllYouTubeViewersQuery>();
+                           services.AddSingleton<ICreateYouTubeViewerCommand,CreateYouTubeViewerCommand>();
+                           services.AddSingleton<IUpdateYouTubeViewerCommand,UpdateYouTubeViewerCommand>();
+                           services.AddSingleton<IDeleteYouTubeViewerCommand,DeleteYouTubeViewerCommand>();
 
                            services.AddSingleton<ModalNavigationStore>();
                            services.AddSingleton<YouTubeViewersStore>();
